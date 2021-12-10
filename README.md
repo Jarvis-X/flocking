@@ -25,4 +25,4 @@ with any compiler that supports C++11 or higher using the header file and the cp
     * Even a neighbor is outside the sensing range of one robot, the robot will still consider the influence of the neighbor.
 * Aside from Voronoi partition, each robot also tries to match the average velocity of its neighbors.
 * All robots have the same maximum moving distance during one iteration.
-* For future extension, the sensing can be 
+* For future extension, the sensing will include a Kalman filter, while the compesation of the disturbance will include a gaussian process.
