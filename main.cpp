@@ -16,13 +16,18 @@ using namespace std;
 int main() {
 	Environment env(ROW, COL);
 	env.add_start(20, 20);
-	env.add_goal(800, 450);
+	env.add_start(20, 500);
+	env.add_goal(800, 640);
+	env.add_goal(1100, 400);
 	env.add_circle_obstacle(700, 300, 50);
 	env.add_circle_obstacle(900, 600, 50);
 	env.add_circle_obstacle(600, 400, 30);
+	// env.add_circle_obstacle(500, 600, 60);
 	env.add_rectangle_obstacle(450, 10, 500, 300);
-	env.add_rectangle_obstacle(200, 400, 250, 650);
-	env.add_rectangle_obstacle(450, 10, 750, 70);
+	env.add_rectangle_obstacle(200, 500, 250, 650);
+	env.add_rectangle_obstacle(500, 10, 700, 70);
+	env.add_rectangle_obstacle(300, 300, 320, 600);
+
 	double pi = acos(-1);
 	for (int i = 0; i < 30; i++){
 		for (int j = 0; j < 80; j++) {

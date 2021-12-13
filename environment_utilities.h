@@ -13,7 +13,7 @@
 #define DC 100
 #define DS 30
 #define MAX_STEP DS
-#define OBSTACLE_VAL -0.2
+#define OBSTACLE_VAL -0.01
 #define NUM_STEPS 50
 #define DISTURB_FACTOR 0.5
 

@@ -12,7 +12,7 @@ void Environment::add_goal(int x, int y) {
 	for (auto i = 0; i < rows; i++) {
 		for (auto j = 0; j < cols; j++) {
 			float dist_sqr = pow(y - i, 2) + pow(x - j, 2);
-			float gauss = 0.8*exp(-dist_sqr*0.015/(rows+cols));
+			float gauss = 10*exp(-dist_sqr*0.02/(rows+cols));
 			this->map[i * this->cols + j] += gauss;
 		}
 	}
@@ -318,20 +318,20 @@ void Pointrobot::update_map(int cols, int rows, vector<float> &map, unordered_ma
 }
 
 pair<float, float> Pointrobot::velocity_match(vector<Pointrobot>& robots) {
-	double vx = 0.0;
-	double vy = 0.0;
+	double vel_x = vx*0.5;
+	double vel_y = vy*0.5;
 	for (int k = 0; k < this->neighbors.size(); k++) {
 		pair<float, float> neighbor_vel = robots[this->neighbors[k]].get_velocity();
-		vx += neighbor_vel.first;
-		vy += neighbor_vel.second;
+		vel_x += neighbor_vel.first;
+		vel_y += neighbor_vel.second;
 	}
-	return make_pair(vx / this->neighbors.size(), vy / this->neighbors.size());
+	return make_pair(vel_x / this->neighbors.size(), vel_y / this->neighbors.size());
 }
 
 void showMap(Environment& environment, std::vector<Pointrobot>& robots) {
 	Mat image_raw = Mat(environment.get_rows(), environment.get_cols(), CV_32FC1, environment.get_map());
 	Mat image;
-	image_raw.convertTo(image, -1, 1, -0.08); //decrease the brightness by 50
+	image_raw.convertTo(image, -1, 0.1); //
 	for (unordered_map<int, pair<int, int> >::iterator iter = environment.get_disturbance()->begin(); iter != environment.get_disturbance()->end(); iter++) {
 		int index = iter->first;
 		int x = index % environment.get_cols();
@@ -343,11 +343,13 @@ void showMap(Environment& environment, std::vector<Pointrobot>& robots) {
 	for (int i = 0; i < robots.size(); i++) {
 		pair<int, int> position = robots[i].get_position();
 		circle(image, Point(position.first, position.second), 3, 1, -1);
+		circle(image, Point(position.first, position.second), 4, 0, 1);
 	}
 
 	auto goals = environment.get_goals();
 	for (int i = 0; i < goals.size(); i++) {
-		circle(image, Point(goals[i].first, goals[i].second), 8, 1, 1);
+		circle(image, Point(goals[i].first, goals[i].second), 8, 0, 2);
+		// circle(image, Point(goals[i].first, goals[i].second), 7, 1, 0);
 	}
 
 	imshow("environment", image);
