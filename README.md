@@ -2,7 +2,7 @@
 Flocking simulation that combines decentralized control, local voronoi partitioning, and velocity match that (seems to) obey Reynolds Flocking Rules
 ## To compile and run
 Obviously, this project was developped in VS 2019. Thus, if intending to work with the .sln solution, one needs to configure OpenCV and OpenCL. 
-More specifically, tell the MSVS comipler where to find the header files and the libraries. 
+More specifically, tell the MSVC comipler where to find the header files and the libraries. 
 * For OpenCV, I followed https://towardsdatascience.com/install-and-configure-opencv-4-2-0-in-windows-10-vc-d132c52063a1
 * For OpenCL, I followed https://medium.com/@pratikone/opencl-on-visual-studio-configuration-tutorial-for-the-confused-3ec1c2b5f0ca
   * OpenCL is not used yet since pthread and coarse graining already gives me satisfying performance. 
