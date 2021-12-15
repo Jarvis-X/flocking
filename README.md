@@ -11,7 +11,7 @@ More specifically, tell the MSVS comipler where to find the header files and the
 Moreover, since the current version depends only on external libraries OpenCV and pthread, one can compile the project 
 with any compiler that supports C++11 or higher using the header file and the cpp files on a machine where OpenCV and pthread are installed.
 
-## Technical details (WIP)
+## Technical details
 * The environment composed of goals, obstacles and disturbances. The robot swarm tries to approach the goal, avoid the obstacles, and offset the disturbances.
   * A goal is integrated into the environment as a positive gaussian function of distance to the goal point. The robots will approach regions of higher values.
   * An obstacle is integrated into the environment as a solid block with a negative value.
@@ -26,3 +26,9 @@ with any compiler that supports C++11 or higher using the header file and the cp
 * Aside from Voronoi partition, each robot also tries to match the average velocity of its neighbors.
 * All robots have the same maximum moving distance during one iteration.
 * For future extension, the sensing will include a Kalman filter, while the compesation of the disturbance will include a gaussian process.
+
+## Results
+* Here are some videos of the simulation under different settings of the environment
+ * one goal, one starting point: https://drive.google.com/file/d/12FpDzVW8JGW73ktIKMlRONQSl5SsHrQU/view?usp=sharing
+ * two goals, two starting points: https://drive.google.com/file/d/1MK17Y-IviVe09gM3KORz7HBoGwPIZ6Dk/view?usp=sharing
+ * three goals, two starting point: https://drive.google.com/file/d/1ooN8JlKTCuZxVNkiWjXN25zzWqEWjc30/view?usp=sharing
